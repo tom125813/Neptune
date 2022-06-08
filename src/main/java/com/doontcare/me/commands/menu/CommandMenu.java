@@ -51,23 +51,22 @@ public class CommandMenu implements CommandExecutor, Listener {
             }
         }
 
-        if (correctInv && e.getCurrentItem()!=null) {
-            e.setCancelled(true);
-            switch(invType) {
+        if (!correctInv || e.getCurrentItem()==null) return;
+        e.setCancelled(true);
+
+        /*move this to different class*/
+        switch(invType) {
                 case MENU:
                     switch(e.getRawSlot()) {
                         case 13:
                             player.openInventory(menu.get(MenuType.BANK));
                             break;
-                        default:break;
                     }
-                    break;
                 case BANK:
                     switch(e.getRawSlot()) {
                         case 1:
                             player.openInventory(menu.get(MenuType.SETTINGS));
                             break;
-                        default:break;
                     }
                     break;
                 case SETTINGS:
@@ -75,12 +74,9 @@ public class CommandMenu implements CommandExecutor, Listener {
                         case 0:
                             player.closeInventory();
                             break;
-                        default:break;
                     }
                     break;
                 default: break;
-            }
-
         }
     }
 }

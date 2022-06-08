@@ -20,7 +20,7 @@ public final class Main extends JavaPlugin {
     }
 
     private void register() {
-        menu=new Menu();
+        menu = new Menu();
         commandMenu = new CommandMenu(this,menu);
     }
 
