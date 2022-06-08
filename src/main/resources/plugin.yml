@@ -1,0 +1,8 @@
+name: Funni
+version: '${project.version}'
+main: com.doontcare.me.Main
+api-version: 1.18
+authors: [ doontcare ]
+description: Funni
+commands:
+  menu:
