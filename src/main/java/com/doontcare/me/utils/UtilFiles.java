@@ -57,12 +57,6 @@ public class UtilFiles {
 
     // ..
 
-    public static boolean exists(String fileName, String fileEnding) {
-        File file = new File(Main.getInstance().getDataFolder(), fileName+"."+fileEnding);
-        if (!file.exists()) return false;
-        return true;
-    }
-
     public static File initFile(String fileName, String fileEnding) {
         File file = new File(dataFolder, fileName+"."+fileEnding);
         if (!file.exists()) {
@@ -75,6 +69,14 @@ public class UtilFiles {
             }
         }
         return file;
+    }
+
+    public static File getFile(String fileName, String fileEnding) {
+        File file = new File(dataFolder, fileName+"."+fileEnding);
+        if (file.exists()) {
+            return file;
+        }
+        return null;
     }
 
 }

@@ -9,10 +9,8 @@ public class ProfileManager {
 
     public HashMap<UUID, Profile> activeProfiles = new HashMap<UUID, Profile>();
 
-    // did for the funny
-    /*public Profile getProfileFromUUID(UUID uuid) {
-        if (activeProfiles.get(uuid)==null) return null;
-        return activeProfiles.get(uuid);
-    }*/
+    public void add(UUID uuid, Profile profile) {activeProfiles.put(uuid,profile);}
+    public Profile get(UUID uuid) {return activeProfiles.get(uuid);}
+    public void remove(UUID uuid) {activeProfiles.remove(uuid);}
 
 }
