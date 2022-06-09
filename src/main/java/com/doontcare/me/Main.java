@@ -2,6 +2,7 @@ package com.doontcare.me;
 
 import com.doontcare.me.commands.menu.CommandMenu;
 import com.doontcare.me.commands.menu.TabCompleterMenu;
+import com.doontcare.me.handlers.CustomRecipeHandler;
 import com.doontcare.me.handlers.FileHandler;
 import com.doontcare.me.listeners.ListenerJoinMessages;
 import com.doontcare.me.listeners.ListenerProfiles;
@@ -9,7 +10,6 @@ import com.doontcare.me.managers.ProfileManager;
 import com.doontcare.me.menus.Menu;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -32,6 +32,11 @@ public final class Main extends JavaPlugin {
     private transient Menu menu;
     private transient CommandMenu commandMenu;
 
+    private CustomRecipeHandler customRecipes;
+
+    // TODO: Add a ranks system
+    // TODO: Add custom crafting w/ custom items which have custom abilities.
+
     @Override
     public void onEnable() {
         instance=this;
@@ -41,6 +46,7 @@ public final class Main extends JavaPlugin {
         registerListeners();
 
         fileHandler.startup();
+        customRecipes.register();
         menu.init();
 
         if (Bukkit.getOnlinePlayers().stream().count()>0) {
@@ -62,6 +68,8 @@ public final class Main extends JavaPlugin {
         listenerProfiles = new ListenerProfiles(this);
 
         listenerJoinMessages = new ListenerJoinMessages(this);
+
+        customRecipes = new CustomRecipeHandler(this);
 
         menu = new Menu();
         commandMenu = new CommandMenu(this,menu);
