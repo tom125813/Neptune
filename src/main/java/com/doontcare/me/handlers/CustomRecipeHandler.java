@@ -1,7 +1,7 @@
 package com.doontcare.me.handlers;
 
 import com.doontcare.me.Main;
-import com.doontcare.me.crafts.CustomRecipe;
+import com.doontcare.me.recipes.CustomRecipe;
 import com.doontcare.me.utils.UtilItems;
 import org.bukkit.Material;
 
@@ -11,7 +11,7 @@ public class CustomRecipeHandler {
 
     public Main main;
     public CustomRecipeHandler(Main main) {
-        this.main=main;
+        this.main = main;
     }
 
     public void register() {
@@ -24,13 +24,13 @@ public class CustomRecipeHandler {
                 "",
                 "&eRight Click to Use"),
                 new String[]{
-                        " G ",
-                        " S ",
-                        "   "
+                        "RRR",
+                        "RSR",
+                        "RRR"
                 },
                 new HashMap<Character, Material>(){{
-                    put('G', Material.ENCHANTED_GOLDEN_APPLE);
                     put('S', Material.STICK);
+                    put('R', Material.LIGHTNING_ROD);
         }});
     }
 

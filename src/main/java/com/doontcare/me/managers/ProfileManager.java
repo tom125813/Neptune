@@ -1,7 +1,6 @@
 package com.doontcare.me.managers;
 
 import com.doontcare.me.profiles.Profile;
-
 import java.util.HashMap;
 import java.util.UUID;
 

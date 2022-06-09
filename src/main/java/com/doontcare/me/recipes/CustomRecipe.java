@@ -1,4 +1,4 @@
-package com.doontcare.me.crafts;
+package com.doontcare.me.recipes;
 
 import com.doontcare.me.Main;
 import org.bukkit.Bukkit;
@@ -7,7 +7,6 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;

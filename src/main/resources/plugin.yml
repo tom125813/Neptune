@@ -6,3 +6,6 @@ authors: [ doontcare ]
 description: Funni
 commands:
   menu:
+    description: Open the main menu
+  profile:
+    description: View your profile & stats
