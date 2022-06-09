@@ -2,8 +2,8 @@ package com.doontcare.me.utils;
 
 import com.doontcare.me.managers.ProfileManager;
 import com.doontcare.me.profiles.Profile;
+import com.doontcare.me.ranks.Rank;
 import com.google.gson.Gson;
-import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.FileReader;
@@ -27,7 +27,7 @@ public class UtilProfiles {
             }
         }
         // Forced to put new Date() here, but as long as everything runs correctly it will not cause a timing issue.
-        Profile newProfile = new Profile(uuid,1,0,new Date());
+        Profile newProfile = new Profile(uuid, Rank.MEMBER,1,0,new Date());
         profileManager.add(uuid, newProfile);
     }
 

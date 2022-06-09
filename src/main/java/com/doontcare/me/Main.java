@@ -4,6 +4,7 @@ import com.doontcare.me.commands.menu.CommandMenu;
 import com.doontcare.me.commands.menu.TabCompleterMenu;
 import com.doontcare.me.handlers.CustomRecipeHandler;
 import com.doontcare.me.handlers.FileHandler;
+import com.doontcare.me.listeners.ListenerChatFormat;
 import com.doontcare.me.listeners.ListenerCrafting;
 import com.doontcare.me.listeners.ListenerJoinMessages;
 import com.doontcare.me.listeners.ListenerProfiles;
@@ -30,13 +31,14 @@ public final class Main extends JavaPlugin {
     private transient ListenerProfiles listenerProfiles;
 
     private transient ListenerJoinMessages listenerJoinMessages;
+    private transient ListenerChatFormat listenerChatFormat;
     private transient ListenerCrafting listenerCrafting;
 
     private transient Menu menu;
     private transient CommandMenu commandMenu;
 
-    // TODO: Add a ranks system
-    // TODO: Add custom crafting w/ custom items which have custom abilities.
+    //TODO: Add a ranks system
+    //      Add custom crafting w/ custom items which have custom abilities.
 
     @Override
     public void onEnable() {
@@ -69,6 +71,7 @@ public final class Main extends JavaPlugin {
         listenerProfiles = new ListenerProfiles(this);
 
         listenerJoinMessages = new ListenerJoinMessages(this);
+        listenerChatFormat = new ListenerChatFormat();
         listenerCrafting = new ListenerCrafting();
 
         customRecipes = new CustomRecipeHandler(this);
@@ -87,6 +90,7 @@ public final class Main extends JavaPlugin {
         pm.registerEvents(commandMenu,this);
         pm.registerEvents(listenerProfiles,this);
         pm.registerEvents(listenerJoinMessages,this);
+        pm.registerEvents(listenerChatFormat,this);
         pm.registerEvents(listenerCrafting,this);
     }
 
