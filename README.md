@@ -9,7 +9,7 @@ An incomplete side project (an all-in-one plugin) made in a relatively short amo
   - A scaleable GUI system
   - And more to come...
 
-#### Information for developers
+#### Other information
   - Utilises Object Oriented Programming
     - Player profiles
     - Custom recipes
