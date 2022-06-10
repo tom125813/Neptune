@@ -12,6 +12,7 @@ An incomplete side project (an all-in-one plugin) made in a relatively short amo
 #### Other information
   - Utilises Object Oriented Programming
     - Player profiles
+      - Holds their rank, level, balance and last-played date.
     - Custom recipes
   - Utilises the strength of Java to enhance code
   - Fully functioning JSON and YAML manipulation
