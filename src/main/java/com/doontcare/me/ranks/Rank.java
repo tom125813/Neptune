@@ -2,15 +2,23 @@ package com.doontcare.me.ranks;
 
 import com.doontcare.me.utils.UtilChat;
 import org.bukkit.ChatColor;
+import org.bukkit.permissions.Permission;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public enum Rank {
 
-    // TODO: Add permissions on startup
+    // TODO: Add permissions to each player startup
 
-    ADMIN(UtilChat.translate("&c[Admin]&r"), ChatColor.RED, null),
-    MEMBER(UtilChat.translate("&7[Member]&r"), ChatColor.ITALIC, null);
+    //ADMIN(UtilChat.translate("&c[Admin]&r"), ChatColor.RED, new ArrayList<String>(Arrays.asList("*"))),
+    ADMIN(UtilChat.translate("&c[Admin]&r"), ChatColor.RED, new ArrayList<String>()),
+    MEMBER(UtilChat.translate("&7[Member]&r"), ChatColor.ITALIC, new ArrayList<String>(
+            Arrays.asList(
+                    "funni.profile"
+            )
+    ));
 
     private String prefix;
     private ChatColor chatColor;

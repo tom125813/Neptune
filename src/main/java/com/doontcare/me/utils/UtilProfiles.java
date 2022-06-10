@@ -1,9 +1,12 @@
 package com.doontcare.me.utils;
 
+import com.doontcare.me.Main;
 import com.doontcare.me.managers.ProfileManager;
 import com.doontcare.me.profiles.Profile;
 import com.doontcare.me.ranks.Rank;
 import com.google.gson.Gson;
+import org.bukkit.Bukkit;
+import org.bukkit.permissions.PermissionAttachment;
 
 import java.io.File;
 import java.io.FileReader;
@@ -15,20 +18,28 @@ import java.util.UUID;
 public class UtilProfiles {
 
     public static void initProfile(ProfileManager profileManager, UUID uuid) {
+        PermissionAttachment attachment;
         if (UtilFiles.getFile(uuid.toString(), "json")!=null) {
             try {
                 Gson gson = new Gson();
                 Reader reader = new FileReader(UtilFiles.getFile(uuid.toString(), "json"));
                 Profile output = gson.fromJson(reader, Profile.class);
                 profileManager.add(uuid,output);
-                return;
+                attachment = Bukkit.getPlayer(uuid).addAttachment(Main.getInstance());
+                for (String perm : output.getRank().getPermissions())
+                    attachment.setPermission(perm,true);
+                Main.getInstance().getPermissionsManager().perms.put(uuid,attachment);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+            return;
         }
         // Forced to put new Date() here, but as long as everything runs correctly it will not cause a timing issue.
         Profile newProfile = new Profile(uuid, Rank.MEMBER,1,0,new Date());
         profileManager.add(uuid, newProfile);
+        attachment = Bukkit.getPlayer(uuid).addAttachment(Main.getInstance());
+        for (String perm : newProfile.getRank().getPermissions())
+            attachment.setPermission(perm,true);
     }
 
     public static void saveProfile(ProfileManager profileManager, UUID uuid) {
@@ -43,6 +54,7 @@ public class UtilProfiles {
         }
 
         profileManager.remove(profile.getUUID());
+        Main.getInstance().getPermissionsManager().perms.remove(profile.getUUID());
     }
 
 }

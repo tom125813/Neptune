@@ -2,12 +2,14 @@ package com.doontcare.me;
 
 import com.doontcare.me.commands.menu.CommandMenu;
 import com.doontcare.me.commands.menu.TabCompleterMenu;
+import com.doontcare.me.commands.profile.CommandProfile;
 import com.doontcare.me.handlers.CustomRecipeHandler;
 import com.doontcare.me.handlers.FileHandler;
 import com.doontcare.me.listeners.ListenerChatFormat;
 import com.doontcare.me.listeners.ListenerCrafting;
 import com.doontcare.me.listeners.ListenerJoinMessages;
 import com.doontcare.me.listeners.ListenerProfiles;
+import com.doontcare.me.managers.PermissionsManager;
 import com.doontcare.me.managers.ProfileManager;
 import com.doontcare.me.menus.Menu;
 import com.doontcare.me.utils.UtilProfiles;
@@ -25,6 +27,8 @@ public final class Main extends JavaPlugin {
     private final Logger logger = Logger.getLogger("funni");
 
     private transient FileHandler fileHandler;
+    private transient PermissionsManager permissionsManager;
+
     private CustomRecipeHandler customRecipes;
 
     private transient ProfileManager profileManager;
@@ -36,6 +40,8 @@ public final class Main extends JavaPlugin {
 
     private transient Menu menu;
     private transient CommandMenu commandMenu;
+
+    private transient CommandProfile commandProfile;
 
     //TODO: Add a ranks system
     //      Add custom crafting w/ custom items which have custom abilities.
@@ -66,6 +72,7 @@ public final class Main extends JavaPlugin {
 
     private void register() {
         fileHandler = new FileHandler(this);
+        permissionsManager = new PermissionsManager();
 
         profileManager = new ProfileManager();
         listenerProfiles = new ListenerProfiles(this);
@@ -78,11 +85,14 @@ public final class Main extends JavaPlugin {
 
         menu = new Menu();
         commandMenu = new CommandMenu(this,menu);
+
+        commandProfile = new CommandProfile();
     }
 
     private void registerCommands() {
         getCommand("menu").setExecutor(commandMenu);
         getCommand("menu").setTabCompleter(new TabCompleterMenu());
+        getCommand("profile").setExecutor(commandProfile);
     }
 
     private void registerListeners() {
@@ -96,5 +106,6 @@ public final class Main extends JavaPlugin {
 
     public static Main getInstance() {return instance;}
     public ProfileManager getProfileManager() {return profileManager;}
+    public PermissionsManager getPermissionsManager() {return permissionsManager;}
 
 }
