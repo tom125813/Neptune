@@ -43,9 +43,6 @@ public final class Main extends JavaPlugin {
 
     private transient CommandProfile commandProfile;
 
-    //TODO: Add a ranks system
-    //      Add custom crafting w/ custom items which have custom abilities.
-
     @Override
     public void onEnable() {
         instance=this;
